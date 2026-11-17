@@ -5,23 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0eab1272-4ec8-4727-b2c9-85da98db973f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CineMax.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/CineMax.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/GestoreDati.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/OrarioDoc.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Prenotazione.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Proiezione.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Utente.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/prenotazioni.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/proiezioni.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/proiezioni.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/CineMax.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/CineMax.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/GestoreDati.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/GestoreDati.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/OrarioDoc.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/OrarioDoc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Prenotazione.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Prenotazione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Proiezione.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Proiezione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Utente.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/CineMax/cinemax/Utente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/prenotazioni.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/prenotazioni.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/utenti.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/utenti.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemax/CineMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemax/CineMax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemax/GestoreDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemax/GestoreDati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemax/Prenotazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemax/Prenotazione.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +33,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CineMax.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Merging main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Anes/Documents/GitHub/CineMax",
-    "onboarding.tips.debug.path": "C:/Users/Anes/Documents/GitHub/CineMax/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CineMax.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/proiezionista-bigliettaio&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Anes/Documents/GitHub/CineMax&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Anes/Documents/GitHub/CineMax/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
