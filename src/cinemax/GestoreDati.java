@@ -354,5 +354,81 @@ public class GestoreDati {
         return false;
     }
 
+    public boolean haSovrapposizione(LocalDateTime nuovaInizio, int nuovaDurataMinuti) {
+        LocalDateTime nuovaFine = nuovaInizio.plusMinutes(nuovaDurataMinuti);
+
+        for (Proiezione p : listaProiezioni) {
+            LocalDateTime pInizio = p.getDataOraProiezione();
+            LocalDateTime pFine = pInizio.plusMinutes(p.getDurataMinuti());
+
+            // Verifica sovrapposizione oraria
+            if (nuovaInizio.isBefore(pFine) && nuovaFine.isAfter(pInizio)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void aggiungiProiezione(Proiezione p) {
+        if (p != null) {
+            listaProiezioni.add(p);
+            salvaProiezioniSuCSV();
+        }
+    }
+    public boolean eliminaProiezione(Proiezione p) {
+        if (haPrenotazioniEsistenti(p)) {
+            return false; // Impossibile eliminare: ci sono prenotazioni
+        }
+        boolean rimossa = listaProiezioni.remove(p);
+        if (rimossa) {
+            salvaProiezioniSuCSV();
+        }
+        return rimossa;
+    }
+
+    /**
+     * Restituisce tutte le prenotazioni previste per la data odierna.
+     */
+    public List<Prenotazione> getPrenotazioniOdierne() {
+        List<Prenotazione> odierne = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String oggiStr = LocalDateTime.now().format(formatter);
+
+        for (Prenotazione p : listaPrenotazioni) {
+            if (p.getDataOraStringa().startsWith(oggiStr)) {
+                odierne.add(p);
+            }
+        }
+        return odierne;
+    }
+
+    public List<Prenotazione> cercaPrenotazioni(String criterio) {
+        List<Prenotazione> risultati = new ArrayList<>();
+        String query = criterio.toLowerCase().trim();
+
+        for (Prenotazione p : listaPrenotazioni) {
+            if (p.getCodicePrenotazione().toLowerCase().contains(query) ||
+                    p.getUsernameCliente().toLowerCase().contains(query) ||
+                    p.getTitoloFilm().toLowerCase().contains(query) ||
+                    p.getDataOraStringa().toLowerCase().contains(query)) {
+                risultati.add(p);
+            }
+        }
+        return risultati;
+    }
+
+    public List<Proiezione> getProiezioniDisponibili() {
+        List<Proiezione> disponibili = new ArrayList<>();
+        LocalDateTime adesso = LocalDateTime.now();
+
+        for (Proiezione p : listaProiezioni) {
+            if (p.getDataOraProiezione().isAfter(adesso)) {
+                disponibili.add(p);
+            }
+        }
+        return disponibili;
+    }
+
+
 
 }
