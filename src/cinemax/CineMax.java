@@ -302,7 +302,7 @@ public class CineMax {
                             } else {
                                 Proiezione nuovaProiezione = new Proiezione(dataOra, titolo, genere, regista, anno, durata, etaMin, prezzo);
                                 db.aggiungiProiezione(nuovaProiezione);
-                                System.out.println("✅ Proiezione aggiunta con successo!");
+                                System.out.println("Proiezione aggiunta con successo!");
                             }
                         } catch (java.time.format.DateTimeParseException e) {
                             System.out.println("Errore formato data: devi inserire data E ora nel formato YYYY-MM-DD HH:mm (es. 2026-12-25 21:00).");
@@ -335,7 +335,7 @@ public class CineMax {
                                 } else {
                                     pMod.setDataOraProiezione(nuovaDataOra);
                                     db.salvaProiezioniSuCSV();
-                                    System.out.println("✅ Data/Ora modifica registrata con successo!");
+                                    System.out.println("Data/Ora modifica registrata con successo!");
                                 }
                             }
                         } catch (java.time.format.DateTimeParseException e) {
