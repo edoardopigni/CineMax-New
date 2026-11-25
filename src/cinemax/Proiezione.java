@@ -1,97 +1,76 @@
+/*
+ * Progetto CineMax - Laboratorio Interdisciplinare A
+ * Autori:
+ * - Daniele Paoli, Matricola: [MATRICOLA], Sede: VA
+ * - Edoardo Pigni, Matricola: 761118, Sede: VA
+ * - Anes Khaia, Matricola: 760038, Sede: VA
+ */
 package cinemax;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Rappresenta una singola proiezione cinematografica programmata nel palinsesto del cinema.
- * <p>
- * La classe mantiene le informazioni relative all'orario di programmazione, ai dettagli
- * descrittivi dell'opera cinematografica (titolo, genere, regista, anno di produzione, durata),
- * ai vincoli di accesso per età e al costo unitario del biglietto.
- * Implementa {@link Serializable} per permettere la persistenza e il trasferimento dello stato.
- * </p>
- * 
+ *
  * @author Daniele Paoli
  * @author Edoardo Pigni
  * @author Anes Khaia
- * @version 1.0
+ * @version 1.1
  */
 public class Proiezione implements Serializable {
-    
-    /**
-     * Identificativo univoco di versione per la serializzazione degli oggetti.
-     */
-    private static final long serialVersionUID = 1L;
-    
-    /**
-     * Capienza massima standard di posti a sedere per la sala di proiezione.
-     */
-    public static final int POSTI_TOTALI = 200; 
-    
-    /**
-     * Data e ora esatta in cui è programmata la proiezione dello spettacolo.
-     */
+
+    /** Identificativo univoco di versione per la serializzazione. */
+    private static final long serialVersionUID = 2L;
+
+    /** Capienza massima standard di posti a sedere per la sala di proiezione. */
+    public static final int POSTI_TOTALI = 200;
+
+    /** Data e ora di programmazione della proiezione. */
     private LocalDateTime dataOraProiezione;
 
-    /**
-     * Titolo dell'opera cinematografica proiettata.
-     */
+    /** Titolo dell'opera cinematografica proiettata. */
     private String titoloFilm;
 
-    /**
-     * Categoria tematica o genere di appartenenza del film (es. Azione, Drammatico, Commedia).
-     */
+    /** Genere cinematografico del film. */
     private String genere;
 
-    /**
-     * Nome e cognome del regista dell'opera cinematografica.
-     */
+    /** Nome e cognome del regista del film. */
     private String regista;
 
-    /**
-     * Anno solare di produzione e uscita del film.
-     */
+    /** Anno di uscita del film. */
     private int anno;
 
-    /**
-     * Durata complessiva della proiezione espressa in minuti.
-     */
+    /** Durata complessiva in minuti. */
     private int durataMinuti;
 
-    /**
-     * Età minima anagrafica raccomandata o vincolante per la visione dello spettacolo.
-     */
+    /** Età minima consigliata o vincolante per la visione. */
     private int etaMinima;
 
-    /**
-     * Tariffa base in Euro (€) per l'acquisto del singolo biglietto.
-     */
+    /** Costo unitario del biglietto in Euro. */
     private double prezzoBiglietto;
 
     /**
      * Costruttore predefinito privo di argomenti.
-     * <p>
-     * Utilizzato principalmente per l'istanziazione generica o per procedure di popolamento progressivo.
-     * </p>
      */
     public Proiezione() {
     }
 
     /**
-     * Costruttore completo per la creazione e inizializzazione di una proiezione cinematografica.
+     * Costruttore completo per inizializzare una proiezione cinematografica.
      *
-     * @param dataOraProiezione la data e l'orario di programmazione dello spettacolo
-     * @param titoloFilm        il titolo del film
-     * @param genere            il genere cinematografico
-     * @param regista           il regista dell'opera
-     * @param anno              l'anno di produzione del film
-     * @param durataMinuti      la durata complessiva in minuti
-     * @param etaMinima         l'età minima richiesta per la visione
-     * @param prezzoBiglietto   il costo in Euro per singolo posto
+     * @param dataOraProiezione data e ora dello spettacolo
+     * @param titoloFilm        titolo del film
+     * @param genere            genere cinematografico
+     * @param regista           regista del film
+     * @param anno              anno di produzione
+     * @param durataMinuti      durata in minuti
+     * @param etaMinima         età minima richiesta
+     * @param prezzoBiglietto   tariffa unitaria del biglietto
      */
-    public Proiezione(LocalDateTime dataOraProiezione, String titoloFilm, String genere, String regista, 
+    public Proiezione(LocalDateTime dataOraProiezione, String titoloFilm, String genere, String regista,
                       int anno, int durataMinuti, int etaMinima, double prezzoBiglietto) {
         this.dataOraProiezione = dataOraProiezione;
         this.titoloFilm = titoloFilm;
@@ -103,160 +82,120 @@ public class Proiezione implements Serializable {
         this.prezzoBiglietto = prezzoBiglietto;
     }
 
-    // --- GETTER E SETTER ---
-
-    /**
-     * Restituisce la data e l'ora fissate per la proiezione.
-     * 
-     * @return l'oggetto {@link LocalDateTime} dell'evento
-     */
+    /** @return data e ora della proiezione */
     public LocalDateTime getDataOraProiezione() {
         return dataOraProiezione;
     }
 
-    /**
-     * Imposta la data e l'ora fissate per la proiezione.
-     * 
-     * @param dataOraProiezione la nuova data e ora di programmazione
-     */
+    /** @param dataOraProiezione la nuova data e ora della proiezione */
     public void setDataOraProiezione(LocalDateTime dataOraProiezione) {
         this.dataOraProiezione = dataOraProiezione;
     }
 
-    /**
-     * Restituisce il titolo del film.
-     * 
-     * @return una stringa contenente il titolo dell'opera
-     */
+    /** @return il titolo del film */
     public String getTitoloFilm() {
         return titoloFilm;
     }
 
-    /**
-     * Aggiorna il titolo del film in programmazione.
-     * 
-     * @param titoloFilm il nuovo titolo da assegnare
-     */
+    /** @param titoloFilm il nuovo titolo del film */
     public void setTitoloFilm(String titoloFilm) {
         this.titoloFilm = titoloFilm;
     }
 
-    /**
-     * Restituisce il genere del film.
-     * 
-     * @return la stringa rappresentante il genere cinematografico
-     */
+    /** @return il genere del film */
     public String getGenere() {
         return genere;
     }
 
-    /**
-     * Aggiorna il genere del film.
-     * 
-     * @param genere il nuovo genere da impostare
-     */
+    /** @param genere il nuovo genere del film */
     public void setGenere(String genere) {
         this.genere = genere;
     }
 
-    /**
-     * Restituisce il regista del film.
-     * 
-     * @return il nome del regista
-     */
+    /** @return il regista del film */
     public String getRegista() {
         return regista;
     }
 
-    /**
-     * Aggiorna il regista dell'opera cinematografica.
-     * 
-     * @param regista il nome del regista da impostare
-     */
+    /** @param regista il nuovo regista del film */
     public void setRegista(String regista) {
         this.regista = regista;
     }
 
-    /**
-     * Restituisce l'anno di produzione del film.
-     * 
-     * @return l'anno espresso come valore intero
-     */
+    /** @return l'anno di uscita del film */
     public int getAnno() {
         return anno;
     }
 
-    /**
-     * Imposta l'anno di uscita del film.
-     * 
-     * @param anno il nuovo anno di rilascio
-     */
+    /** @param anno il nuovo anno di uscita */
     public void setAnno(int anno) {
         this.anno = anno;
     }
 
-    /**
-     * Restituisce la durata complessiva della proiezione.
-     * 
-     * @return la durata espressa in minuti
-     */
+    /** @return la durata del film in minuti */
     public int getDurataMinuti() {
         return durataMinuti;
     }
 
-    /**
-     * Aggiorna la durata in minuti della proiezione.
-     * 
-     * @param durataMinuti il numero di minuti totali
-     */
+    /** @param durataMinuti la nuova durata in minuti */
     public void setDurataMinuti(int durataMinuti) {
         this.durataMinuti = durataMinuti;
     }
 
-    /**
-     * Restituisce la soglia di età minima raccomandata per assistere allo spettacolo.
-     * 
-     * @return l'età minima richiesta
-     */
+    /** @return l'età minima richiesta */
     public int getEtaMinima() {
         return etaMinima;
     }
 
-    /**
-     * Imposta la soglia di età minima per la visione del film.
-     * 
-     * @param etaMinima l'età minima espressa in anni
-     */
+    /** @param etaMinima la nuova età minima */
     public void setEtaMinima(int etaMinima) {
         this.etaMinima = etaMinima;
     }
 
-    /**
-     * Restituisce la tariffa unitaria del biglietto per questa proiezione.
-     * 
-     * @return il prezzo del biglietto espresso in Euro
-     */
+    /** @return il prezzo unitario del biglietto */
     public double getPrezzoBiglietto() {
         return prezzoBiglietto;
     }
 
-    /**
-     * Imposta la tariffa unitaria del biglietto per questa proiezione.
-     * 
-     * @param prezzoBiglietto il nuovo costo del biglietto
-     */
+    /** @param prezzoBiglietto il nuovo prezzo del biglietto */
     public void setPrezzoBiglietto(double prezzoBiglietto) {
         this.prezzoBiglietto = prezzoBiglietto;
     }
-    
+
     /**
-     * Restituisce una stringa formattata con i dettagli essenziali della proiezione (data/ora, titolo, anno e costo).
-     * 
-     * @return la descrizione formattata nel pattern {@code "GG/MM/AAAA HH:mm | Titolo (Anno) - Prezzo€"}
+     * Restituisce una scheda completa con tutti i dettagli della proiezione e i posti liberi.
+     *
+     * @param postiLiberi il numero di posti ancora disponibili in sala
+     * @return stringa multi-riga formattata per la funzione {@code visualizzaProiezione()}
+     */
+    public String toDettaglioString(int postiLiberi) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return String.format(Locale.ITALY,
+                "========================================%n" +
+                "Titolo:         %s%n" +
+                "Genere:         %s%n" +
+                "Regista:        %s%n" +
+                "Anno:           %d%n" +
+                "Durata:         %d min%n" +
+                "Età minima:     %d+%n" +
+                "Data e Ora:     %s%n" +
+                "Prezzo:         %.2f€%n" +
+                "Posti liberi:   %d / %d%n" +
+                "========================================",
+                titoloFilm, genere, regista, anno, durataMinuti, etaMinima,
+                dataOraProiezione.format(formatter), prezzoBiglietto,
+                postiLiberi, POSTI_TOTALI);
+    }
+
+    /**
+     * Restituisce una rappresentazione compatta della proiezione per gli elenchi.
+     *
+     * @return stringa nel formato {@code "GG/MM/AAAA HH:mm | Titolo (Anno) [Genere] - Prezzo€"}
      */
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return dataOraProiezione.format(formatter) + " | " + titoloFilm + " (" + anno + ") - " + prezzoBiglietto + "€";
+        return String.format(Locale.ITALY, "%s | %s (%d) [%s] - %.2f€",
+                dataOraProiezione.format(formatter), titoloFilm, anno, genere, prezzoBiglietto);
     }
 }

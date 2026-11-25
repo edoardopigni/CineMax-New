@@ -1,203 +1,194 @@
+/*
+ * Progetto CineMax - Laboratorio Interdisciplinare A
+ * Autori:
+ * - Daniele Paoli, Matricola: [MATRICOLA], Sede: VA
+ * - Edoardo Pigni, Matricola: 761118, Sede: VA
+ * - Anes Khaia, Matricola: 760038, Sede: VA
+ */
 package cinemax;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
  * Rappresenta la prenotazione di biglietti effettuata da un Cliente per una specifica Proiezione.
- * <p>
- * Questa classe traccia l'associazione tra un utente, uno spettacolo cinematografico e i posti riservati,
- * calcolando il costo totale e generando un codice identificativo univoco per il ritiro dei biglietti.
- * Implementa {@link Serializable} per il salvataggio persistente dello storico prenotazioni.
- * </p>
- * 
+ *
  * @author Daniele Paoli
  * @author Edoardo Pigni
  * @author Anes Khaia
- * @version 1.0
+ * @version 1.1
  */
 public class Prenotazione implements Serializable {
-    
-    /**
-     * Identificativo univoco di versione per la serializzazione degli oggetti.
-     */
-    private static final long serialVersionUID = 1L;
-    
-    /**
-     * Codice identificativo alfanumerico univoco della prenotazione.
-     */
-    private String codicePrenotazione; 
 
-    /**
-     * L'identificativo (username) del cliente che ha effettuato l'acquisto.
-     */
-    private String usernameCliente; 
+    /** Identificativo univoco di versione per la serializzazione. */
+    private static final long serialVersionUID = 2L;
 
-    /**
-     * Il titolo del film per il quale sono stati prenotati i posti.
-     */
-    private String titoloFilm; 
+    /** Formatter standard per la rappresentazione testuale di data e ora. */
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    /**
-     * La data e l'ora della proiezione, memorizzata in formato testuale per semplicità di visualizzazione.
-     */
-    private String dataOraStringa; 
+    /** Codice identificativo alfanumerico univoco della prenotazione. */
+    private String codicePrenotazione;
 
-    /**
-     * Il quantitativo di posti riservati in questa transazione.
-     */
+    /** Username del cliente titolare della prenotazione. */
+    private String usernameCliente;
+
+    /** Titolo del film prenotato. */
+    private String titoloFilm;
+
+    /** Data e ora della proiezione prenotata. */
+    private LocalDateTime dataOraProiezione;
+
+    /** Numero di posti riservati. */
     private int numeroPosti;
 
-    /**
-     * Il prezzo complessivo della prenotazione calcolato al momento della creazione.
-     */
+    /** Costo unitario del singolo biglietto in Euro. */
+    private double costoSingolo;
+
+    /** Importo totale della prenotazione in Euro. */
     private double costoTotale;
 
     /**
-     * Costruttore per creare una nuova prenotazione e calcolarne il costo totale.
-     * <p>
-     * Durante l'inizializzazione, il sistema genera in automatico un codice alfanumerico
-     * univoco di 8 caratteri utilizzando la classe {@link UUID}.
-     * </p>
+     * Costruttore per creare una nuova prenotazione con codice univoco generato automaticamente.
      *
-     * @param usernameCliente l'identificativo dell'utente che prenota
-     * @param titoloFilm      il titolo dello spettacolo scelto
-     * @param dataOraStringa  l'orario della proiezione in formato stringa
-     * @param numeroPosti     la quantità di biglietti richiesti
-     * @param costoSingolo    il prezzo unitario del singolo biglietto per quella proiezione
+     * @param usernameCliente   lo username del cliente
+     * @param titoloFilm        il titolo del film
+     * @param dataOraProiezione la data e l'ora della proiezione
+     * @param numeroPosti       il numero di biglietti richiesti
+     * @param costoSingolo      il costo unitario del singolo biglietto
      */
-    public Prenotazione(String usernameCliente, String titoloFilm, String dataOraStringa, int numeroPosti, double costoSingolo) {
-        // Genera un codice alfanumerico univoco di 8 caratteri
-        this.codicePrenotazione = UUID.randomUUID().toString().substring(0, 8).toUpperCase(); 
+    public Prenotazione(String usernameCliente, String titoloFilm, LocalDateTime dataOraProiezione,
+                        int numeroPosti, double costoSingolo) {
+        this.codicePrenotazione = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         this.usernameCliente = usernameCliente;
         this.titoloFilm = titoloFilm;
-        this.dataOraStringa = dataOraStringa;
+        this.dataOraProiezione = dataOraProiezione;
         this.numeroPosti = numeroPosti;
+        this.costoSingolo = costoSingolo;
         this.costoTotale = numeroPosti * costoSingolo;
     }
 
-    // --- GETTER E SETTER ---
-
-    /**
-     * Restituisce il codice univoco della prenotazione.
-     * 
-     * @return la stringa contenente il codice alfanumerico a 8 caratteri
-     */
+    /** @return il codice univoco a 8 caratteri della prenotazione */
     public String getCodicePrenotazione() {
         return codicePrenotazione;
     }
 
-    /**
-     * Imposta o sovrascrive il codice univoco della prenotazione.
-     * 
-     * @param codicePrenotazione il nuovo codice da assegnare
-     */
+    /** @param codicePrenotazione il nuovo codice prenotazione */
     public void setCodicePrenotazione(String codicePrenotazione) {
         this.codicePrenotazione = codicePrenotazione;
     }
 
-    /**
-     * Restituisce lo username del cliente titolare della prenotazione.
-     * 
-     * @return l'identificativo del cliente
-     */
+    /** @return lo username del cliente titolare */
     public String getUsernameCliente() {
         return usernameCliente;
     }
 
-    /**
-     * Imposta lo username del cliente titolare della prenotazione.
-     * 
-     * @param usernameCliente il nuovo identificativo del cliente
-     */
+    /** @param usernameCliente il nuovo username del cliente */
     public void setUsernameCliente(String usernameCliente) {
         this.usernameCliente = usernameCliente;
     }
 
-    /**
-     * Restituisce il titolo del film prenotato.
-     * 
-     * @return il titolo dello spettacolo
-     */
+    /** @return il titolo del film prenotato */
     public String getTitoloFilm() {
         return titoloFilm;
     }
 
-    /**
-     * Imposta il titolo del film prenotato.
-     * 
-     * @param titoloFilm il nuovo titolo dello spettacolo
-     */
+    /** @param titoloFilm il nuovo titolo del film */
     public void setTitoloFilm(String titoloFilm) {
         this.titoloFilm = titoloFilm;
     }
 
+    /** @return data e ora della proiezione come {@link LocalDateTime} */
+    public LocalDateTime getDataOraProiezione() {
+        return dataOraProiezione;
+    }
+
+    /** @param dataOraProiezione la nuova data e ora della proiezione */
+    public void setDataOraProiezione(LocalDateTime dataOraProiezione) {
+        this.dataOraProiezione = dataOraProiezione;
+    }
+
     /**
-     * Restituisce la data e l'ora della proiezione in formato testuale.
-     * 
-     * @return la stringa rappresentante data e ora
+     * Restituisce data e ora della proiezione formattate come stringa ({@code dd/MM/yyyy HH:mm}).
+     *
+     * @return la data e ora in formato testuale
      */
     public String getDataOraStringa() {
-        return dataOraStringa;
+        return dataOraProiezione != null ? dataOraProiezione.format(FORMATTER) : "";
     }
 
-    /**
-     * Imposta la data e l'ora della proiezione.
-     * 
-     * @param dataOraStringa la nuova data e ora in formato testuale
-     */
-    public void setDataOraStringa(String dataOraStringa) {
-        this.dataOraStringa = dataOraStringa;
-    }
-
-    /**
-     * Restituisce il numero totale di posti riservati.
-     * 
-     * @return la quantità di biglietti associati alla prenotazione
-     */
+    /** @return il numero di posti prenotati */
     public int getNumeroPosti() {
         return numeroPosti;
     }
 
     /**
-     * Aggiorna il numero di posti riservati.
-     * <p>
-     * Attenzione: questa operazione non ricalcola automaticamente il costo totale.
-     * </p>
-     * 
-     * @param numeroPosti la nuova quantità di biglietti
+     * Aggiorna il numero di posti e ricalcola automaticamente il costo totale.
+     *
+     * @param numeroPosti la nuova quantità di posti
      */
     public void setNumeroPosti(int numeroPosti) {
         this.numeroPosti = numeroPosti;
-        // Aggiorniamo il costo se i posti cambiano (richiede di passare di nuovo il costo singolo)
+        this.costoTotale = this.numeroPosti * this.costoSingolo;
+    }
+
+    /** @return il costo unitario del singolo biglietto */
+    public double getCostoSingolo() {
+        return costoSingolo;
     }
 
     /**
-     * Restituisce l'importo totale della transazione.
-     * 
-     * @return il costo complessivo in Euro
+     * Aggiorna il costo unitario e ricalcola automaticamente il costo totale.
+     *
+     * @param costoSingolo il nuovo prezzo unitario del biglietto
      */
+    public void setCostoSingolo(double costoSingolo) {
+        this.costoSingolo = costoSingolo;
+        this.costoTotale = this.numeroPosti * this.costoSingolo;
+    }
+
+    /** @return il costo totale della prenotazione */
     public double getCostoTotale() {
         return costoTotale;
     }
 
-    /**
-     * Imposta l'importo totale della transazione.
-     * 
-     * @param costoTotale il nuovo costo complessivo
-     */
+    /** @param costoTotale il nuovo costo totale */
     public void setCostoTotale(double costoTotale) {
         this.costoTotale = costoTotale;
     }
 
     /**
-     * Genera una rappresentazione testuale formattata della prenotazione.
-     * 
-     * @return una stringa riassuntiva nel formato 
-     *         {@code "Prenotazione [Codice]: [Titolo] il [DataOra] - Posti: [Num] ([Costo]€)"}
+     * Restituisce una scheda dettagliata della prenotazione per {@code visualizzaPrenotazione()}.
+     *
+     * @param nomeCompletoCliente nome e cognome del cliente titolare
+     * @return stringa multi-riga con tutti i campi richiesti dalle specifiche
+     */
+    public String toDettaglioString(String nomeCompletoCliente) {
+        return String.format(Locale.ITALY,
+                "========================================%n" +
+                "Codice Prenotazione: %s%n" +
+                "Cliente:             %s (%s)%n" +
+                "Film:                %s%n" +
+                "Data e Ora:          %s%n" +
+                "Numero Biglietti:    %d%n" +
+                "Costo Unitario:      %.2f€%n" +
+                "Costo Totale:        %.2f€%n" +
+                "========================================",
+                codicePrenotazione, nomeCompletoCliente, usernameCliente,
+                titoloFilm, getDataOraStringa(), numeroPosti, costoSingolo, costoTotale);
+    }
+
+    /**
+     * Restituisce una rappresentazione compatta della prenotazione.
+     *
+     * @return stringa riassuntiva della prenotazione
      */
     @Override
     public String toString() {
-        return "Prenotazione " + codicePrenotazione + ": " + titoloFilm + " il " + dataOraStringa + " - Posti: " + numeroPosti + " (" + costoTotale + "EUR)";
+        return String.format(Locale.ITALY,
+                "Prenotazione %s: %s il %s - Posti: %d (Unitario: %.2f€ | Totale: %.2f€)",
+                codicePrenotazione, titoloFilm, getDataOraStringa(), numeroPosti, costoSingolo, costoTotale);
     }
 }

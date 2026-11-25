@@ -215,7 +215,7 @@ public class CineMax {
                         Prenotazione nuovaPren = new Prenotazione(
                                 cliente.getUsername(),
                                 filmScelto.getTitoloFilm(),
-                                dataOraStr,
+                                filmScelto.getDataOraProiezione(),
                                 numPosti,
                                 filmScelto.getPrezzoBiglietto()
                         );
