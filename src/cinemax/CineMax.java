@@ -223,7 +223,7 @@ public class CineMax {
                         db.aggiungiPrenotazione(nuovaPren);
                         db.salvaPrenotazioni();
 
-                        System.out.println("\n✅ Prenotazione confermata con successo!");
+                        System.out.println("\n Prenotazione confermata con successo!");
                         System.out.println("Riepilogo: " + nuovaPren.toString());
                     }
                     System.out.println("---------------------------------\n");
@@ -298,16 +298,16 @@ public class CineMax {
                             LocalDateTime dataOra = LocalDateTime.parse(dataOraStr, formatter);
 
                             if (db.haSovrapposizione(dataOra, durata)) {
-                                System.out.println("❌ Errore: La proiezione si sovrappone ad un altro spettacolo già in palinsesto!");
+                                System.out.println("Errore: La proiezione si sovrappone ad un altro spettacolo già in palinsesto!");
                             } else {
                                 Proiezione nuovaProiezione = new Proiezione(dataOra, titolo, genere, regista, anno, durata, etaMin, prezzo);
                                 db.aggiungiProiezione(nuovaProiezione);
-                                System.out.println("✅ Proiezione aggiunta con successo!");
+                                System.out.println("Proiezione aggiunta con successo!");
                             }
                         } catch (java.time.format.DateTimeParseException e) {
-                            System.out.println("❌ Errore formato data: devi inserire data E ora nel formato YYYY-MM-DD HH:mm (es. 2026-12-25 21:00).");
+                            System.out.println("Errore formato data: devi inserire data E ora nel formato YYYY-MM-DD HH:mm (es. 2026-12-25 21:00).");
                         } catch (NumberFormatException e) {
-                            System.out.println("❌ Errore formato numerico: controlla di aver inserito numeri validi per anno, durata, età o prezzo.");
+                            System.out.println("Errore formato numerico: controlla di aver inserito numeri validi per anno, durata, età o prezzo.");
                         }
                         break;
 
@@ -324,24 +324,24 @@ public class CineMax {
 
                             Proiezione pMod = proiezioni.get(idxMod);
                             if (db.haPrenotazioniEsistenti(pMod)) {
-                                System.out.println("❌ Impossibile modificare: esistono già prenotazioni attive per questo spettacolo!");
+                                System.out.println("Impossibile modificare: esistono già prenotazioni attive per questo spettacolo!");
                             } else {
                                 System.out.print("Nuova Data e Ora (es. 2026-12-25 21:00): ");
                                 String nuovaDataStr = scanner.nextLine().trim();
                                 LocalDateTime nuovaDataOra = LocalDateTime.parse(nuovaDataStr, formatter);
 
                                 if (db.haSovrapposizione(nuovaDataOra, pMod.getDurataMinuti())) {
-                                    System.out.println("❌ Errore: La nuova data si sovrappone a un'altra proiezione!");
+                                    System.out.println("Errore: La nuova data si sovrappone a un'altra proiezione!");
                                 } else {
                                     pMod.setDataOraProiezione(nuovaDataOra);
                                     db.salvaProiezioniSuCSV();
-                                    System.out.println("✅ Data/Ora modifica registrata con successo!");
+                                    System.out.println("Data/Ora modifica registrata con successo!");
                                 }
                             }
                         } catch (java.time.format.DateTimeParseException e) {
-                            System.out.println("❌ Errore formato data: usa il formato YYYY-MM-DD HH:mm (es. 2026-12-25 21:00).");
+                            System.out.println("Errore formato data: usa il formato YYYY-MM-DD HH:mm (es. 2026-12-25 21:00).");
                         } catch (NumberFormatException e) {
-                            System.out.println("❌ Errore: inserisci un numero intero valido.");
+                            System.out.println("Errore: inserisci un numero intero valido.");
                         }
                         break;
 
@@ -358,12 +358,12 @@ public class CineMax {
 
                             Proiezione pDel = listaDel.get(idxDel);
                             if (db.eliminaProiezione(pDel)) {
-                                System.out.println("✅ Proiezione eliminata con successo!");
+                                System.out.println("Proiezione eliminata con successo!");
                             } else {
-                                System.out.println("❌ Impossibile eliminare: ci sono prenotazioni attive per questa proiezione!");
+                                System.out.println("Impossibile eliminare: ci sono prenotazioni attive per questa proiezione!");
                             }
                         } catch (NumberFormatException e) {
-                            System.out.println("❌ Errore: inserisci un numero intero valido.");
+                            System.out.println("Errore: inserisci un numero intero valido.");
                         }
                         break;
 
